@@ -1,0 +1,72 @@
+{
+	"name": "export-design-report",
+	"uuid": "8fd55bb0080e4576bd8a2e92f2eac894",
+	"displayName": "报告",
+	"description": "导出 PCB 的各种统计报告，如网络长度、网络类、差分对等信息",
+	"version": "1.0.8",
+	"publisher": "JLCEDA",
+	"engines": {
+		"eda": "^2.2.34"
+	},
+	"license": "MIT License",
+	"repository": {
+		"type": "extension-store",
+		"url": ""
+	},
+	"categories": "PCB",
+	"keywords": ["Report", "Net Length"],
+	"images": {
+		"logo": "./images/logo.png"
+	},
+	"homepage": "https://pro.lceda.cn",
+	"bugs": "https://lceda.cn/page/feedback?originPage=other",
+	"activationEvents": {},
+	"entry": "./dist/index",
+	"dependentExtensions": {},
+	"headerMenus": {
+		"pcb": [
+			{
+				"id": "Report",
+				"title": "报告",
+				"menuItems": [
+					{
+						"id": "Net Length",
+						"title": "网络长度",
+						"menuItems": [
+							{
+								"id": "Net",
+								"title": "网络",
+								"registerFn": "extractAllNetDetails"
+							},
+							{
+								"id": "Net Classes",
+								"title": "网络类",
+								"registerFn": "extractNetClassLengthDetails"
+							},
+							{
+								"id": "Differential Pair",
+								"title": "差分对",
+								"registerFn": "extractDifferentialPairsDetails"
+							},
+							{
+								"id": "Equal Length Group",
+								"title": "等长网络组",
+								"registerFn": "extractEqualLengthNetGroupsDetails"
+							},
+							{
+								"id": "Pads Pair Group",
+								"title": "焊盘对组",
+								"registerFn": "extractPadPairGroupsDetails"
+							}
+						]
+					},
+					{
+						"id": "About...",
+						"title": "关于...",
+						"registerFn": "about"
+					}
+				]
+			}
+		]
+	}
+}
