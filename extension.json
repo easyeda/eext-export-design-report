@@ -1,9 +1,9 @@
 {
 	"name": "export-design-report",
 	"uuid": "8fd55bb0080e4576bd8a2e92f2eac894",
-	"displayName": "报告",
+	"displayName": "设计报告",
 	"description": "导出 PCB 的各种统计报告，如网络长度、网络类、差分对等信息",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"publisher": "JLCEDA",
 	"engines": {
 		"eda": "^2.2.34"

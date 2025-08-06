@@ -45,12 +45,15 @@
     Pads Pair Group,Pads Pair,Net Length(mil),Net Length(mm)
     ```
 
-## 用户界面
+## 操作界面
 
 用户可以通过顶部菜单栏访问以下功能：
+
+![图 0](images/946bf688b5a7d5a132129f227fdfcaf981a3beb8edb68907456873c52987ffe4.png)  
 
 -   PCB页面 > 报告 > 网络长度 > 网络
 -   PCB页面 > 报告 > 网络长度 > 网络类
 -   PCB页面 > 报告 > 网络长度 > 差分对
 -   PCB页面 > 报告 > 网络长度 > 等长网络组
 -   PCB页面 > 报告 > 网络长度 > 焊盘对组
+
