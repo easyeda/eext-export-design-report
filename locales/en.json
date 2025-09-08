@@ -1,4 +1,9 @@
 {
 	"About": "About",
-	"EasyEDA Export Report Tool v": "EasyEDA Export Report Tool v${1}"
+	"EasyEDA Export Report Tool v": "EasyEDA Export Report Tool v${1}",
+	"Pad Coordinate Export": "Pad Coordinate Export",
+	"Please select the pad on the canvas first": "Please select the pad on the canvas first",
+	"Detected ${1} selected pads, exporting coordinate information...": "Detected ${1} selected pads, exporting coordinate information...",
+	"Successfully exported ${1} pad coordinate information to ${2} file": "Successfully exported ${1} pad coordinate information to ${2} file",
+	"Export Complete": "Export Complete"
 }

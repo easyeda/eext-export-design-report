@@ -2,8 +2,8 @@
 	"name": "export-design-report",
 	"uuid": "8fd55bb0080e4576bd8a2e92f2eac894",
 	"displayName": "设计报告",
-	"description": "导出 PCB 的各种统计报告，如网络长度、网络类、差分对等信息",
-	"version": "1.0.9",
+	"description": "本扩展用于基于当前 PCB 设计，导出指定高速网络的长度信息和焊盘坐标信息。",
+	"version": "1.0.12",
 	"publisher": "JLCEDA",
 	"engines": {
 		"eda": "^2.2.34"
@@ -59,6 +59,11 @@
 								"registerFn": "extractPadPairGroupsDetails"
 							}
 						]
+					},
+					{
+						"id": "pad",
+						"title": "焊盘坐标",
+						"registerFn": "extractSelectPadDetails"
 					},
 					{
 						"id": "About...",

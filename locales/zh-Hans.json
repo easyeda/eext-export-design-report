@@ -1,4 +1,9 @@
 {
 	"About": "关于",
-	"EasyEDA Export Report Tool v": "嘉立创EDA 导出报告工具 v${1}"
+	"EasyEDA Export Report Tool v": "嘉立创EDA 导出报告工具 v${1}",
+	"Pad Coordinate Export": "焊盘坐标导出",
+	"Please select the pad on the canvas first": "请先在画布上选择焊盘",
+	"Detected ${1} selected pads, exporting coordinate information...": "检测到已选中 ${1} 个焊盘，正在导出坐标信息...",
+	"Successfully exported ${1} pad coordinate information to ${2} file": "成功导出 ${1} 个焊盘的坐标信息到 ${2} 文件",
+	"Export Complete": "导出完成"
 }
