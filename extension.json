@@ -3,7 +3,7 @@
 	"uuid": "8fd55bb0080e4576bd8a2e92f2eac894",
 	"displayName": "设计报告",
 	"description": "本扩展用于基于当前 PCB 设计，导出指定高速网络的长度信息和焊盘坐标信息。",
-	"version": "1.0.12",
+	"version": "1.0.13",
 	"publisher": "JLCEDA",
 	"engines": {
 		"eda": "^2.2.34"

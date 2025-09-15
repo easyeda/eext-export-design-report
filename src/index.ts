@@ -269,9 +269,85 @@ export async function extractSelectPadDetails() {
 	}
 }
 
+// 解析版本号的辅助函数
+function parseVersion(versionString) {
+	// 版本格式如: "3.1.29.ce6e3d83" 或 "2.2.42.2"
+	const parts = versionString.split('.');
+	return {
+		major: parseInt(parts[0]) || 0,
+		minor: parseInt(parts[1]) || 0,
+		patch: parseInt(parts[2]) || 0
+	};
+}
+
+// 2.2.x版本的组件识别逻辑（原有逻辑）
+async function getLegacyComponentDesignator(pad) {
+	let componentDesignator = '';
+	
+	// 从primitiveId提取组件ID
+	const primitiveId = pad.primitiveId;
+	let componentId = '';
+	
+	// 处理primitiveId格式，如"e1e8"取"e1"，"ie1e8"取"e1"，"e5"保持"e5"
+	if (primitiveId.startsWith('i')) {
+		// 去掉开头的'i'
+		const withoutI = primitiveId.substring(1);
+		const match = withoutI.match(/^(e\d+)/);
+		componentId = match ? match[1] : withoutI;
+	} else {
+		const match = primitiveId.match(/^(e\d+)/);
+		componentId = match ? match[1] : primitiveId;
+	}
+
+	// 尝试获取组件信息
+	try {
+		const component = await eda.pcb_PrimitiveComponent.get(componentId);
+		if (component && component.designator) {
+			componentDesignator = component.designator;
+		}
+	} catch (componentError) {
+		// 如果获取组件失败，可能是游离焊盘，componentDesignator保持为空
+		console.log(`Component not found for pad ${primitiveId}, treating as free pad`);
+	}
+	
+	return componentDesignator;
+}
+
+// 3.0.0+版本的组件识别逻辑（新逻辑）
+async function getNewComponentDesignator(pad) {
+	let componentDesignator = '';
+	
+	try {
+		// 获取所有组件
+		const allComponents = await eda.pcb_PrimitiveComponent.getAll();
+		const padPrimitiveId = pad.primitiveId;
+		
+		// 查找匹配的组件：焊盘的primitiveId应该以组件的primitiveId开头
+		// 例如：c5017507cf26d437e8 属于 c5017507cf26d437
+		const matchingComponent = allComponents.find(component => {
+			return padPrimitiveId.startsWith(component.primitiveId);
+		});
+		
+		if (matchingComponent && matchingComponent.designator) {
+			componentDesignator = matchingComponent.designator;
+		} else {
+			// 没有找到匹配的组件，视为游离焊盘
+			console.log(`No matching component found for pad ${padPrimitiveId}, treating as free pad`);
+		}
+	} catch (error) {
+		console.error('Error in getNewComponentDesignator:', error);
+	}
+	
+	return componentDesignator;
+}
+
 // 处理焊盘详细信息的辅助函数
 async function processPadDetails(pads) {
 	try {
+		// 获取EasyEDA版本
+		const editorVersion = await eda.sys_Environment.getEditorCurrentVersion();
+		const versionNumber = parseVersion(editorVersion);
+		
 		// 使用默认单位mil
 		const unitLabel = 'mil';
 
@@ -279,30 +355,15 @@ async function processPadDetails(pads) {
 			pads.map(async (pad) => {
 				let componentDesignator = '';
 				
-				// 从primitiveId提取组件ID
-				const primitiveId = pad.primitiveId;
-				let componentId = '';
-				
-				// 处理primitiveId格式，如"e1e8"取"e1"，"ie1e8"取"e1"，"e5"保持"e5"
-				if (primitiveId.startsWith('i')) {
-					// 去掉开头的'i'
-					const withoutI = primitiveId.substring(1);
-					const match = withoutI.match(/^(e\d+)/);
-					componentId = match ? match[1] : withoutI;
+				if (versionNumber.major === 2 && versionNumber.minor === 2) {
+					// 2.2.x版本使用原有逻辑
+					componentDesignator = await getLegacyComponentDesignator(pad);
+				} else if (versionNumber.major >= 3) {
+					// 3.0.0+版本使用新逻辑
+					componentDesignator = await getNewComponentDesignator(pad);
 				} else {
-					const match = primitiveId.match(/^(e\d+)/);
-					componentId = match ? match[1] : primitiveId;
-				}
-
-				// 尝试获取组件信息
-				try {
-					const component = await eda.pcb_PrimitiveComponent.get(componentId);
-					if (component && component.designator) {
-						componentDesignator = component.designator;
-					}
-				} catch (componentError) {
-					// 如果获取组件失败，可能是游离焊盘，componentDesignator保持为空
-					console.log(`Component not found for pad ${primitiveId}, treating as free pad`);
+					// 其他版本使用原有逻辑作为fallback
+					componentDesignator = await getLegacyComponentDesignator(pad);
 				}
 
 				return {
