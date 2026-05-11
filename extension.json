@@ -1,77 +1,80 @@
 {
-	"name": "export-design-report",
-	"uuid": "8fd55bb0080e4576bd8a2e92f2eac894",
-	"displayName": "设计报告",
-	"description": "本扩展用于基于当前 PCB 设计，导出指定高速网络的长度信息和焊盘坐标信息。",
-	"version": "1.0.13",
-	"publisher": "JLCEDA",
-	"engines": {
-		"eda": "^2.2.34"
-	},
-	"license": "MIT License",
-	"repository": {
-		"type": "extension-store",
-		"url": ""
-	},
-	"categories": "PCB",
-	"keywords": ["Report", "Net Length"],
-	"images": {
-		"logo": "./images/logo.png"
-	},
-	"homepage": "https://github.com/easyeda/eext-export-design-report",
-	"bugs": "https://github.com/easyeda/eext-export-design-report/issues",
-	"activationEvents": {},
-	"entry": "./dist/index",
-	"dependentExtensions": {},
-	"headerMenus": {
-		"pcb": [
-			{
-				"id": "Report",
-				"title": "报告",
-				"menuItems": [
-					{
-						"id": "Net Length",
-						"title": "网络长度",
-						"menuItems": [
-							{
-								"id": "Net",
-								"title": "网络",
-								"registerFn": "extractAllNetDetails"
-							},
-							{
-								"id": "Net Classes",
-								"title": "网络类",
-								"registerFn": "extractNetClassLengthDetails"
-							},
-							{
-								"id": "Differential Pair",
-								"title": "差分对",
-								"registerFn": "extractDifferentialPairsDetails"
-							},
-							{
-								"id": "Equal Length Group",
-								"title": "等长网络组",
-								"registerFn": "extractEqualLengthNetGroupsDetails"
-							},
-							{
-								"id": "Pads Pair Group",
-								"title": "焊盘对组",
-								"registerFn": "extractPadPairGroupsDetails"
-							}
-						]
-					},
-					{
-						"id": "pad",
-						"title": "焊盘坐标",
-						"registerFn": "extractSelectPadDetails"
-					},
-					{
-						"id": "About...",
-						"title": "关于...",
-						"registerFn": "about"
-					}
-				]
-			}
-		]
-	}
+  "name": "export-design-report",
+  "uuid": "8fd55bb0080e4576bd8a2e92f2eac894",
+  "displayName": "设计报告",
+  "description": "本扩展用于基于当前 PCB 设计，导出指定高速网络的长度信息和焊盘坐标信息。",
+  "version": "1.0.13",
+  "publisher": "EasyEDA",
+  "engines": {
+    "eda": "^2.2.34"
+  },
+  "license": "MIT License",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/easyeda/eext-export-design-report"
+  },
+  "categories": "PCB",
+  "keywords": [
+    "Report",
+    "Net Length"
+  ],
+  "images": {
+    "logo": "./images/logo.png"
+  },
+  "homepage": "https://github.com/easyeda",
+  "bugs": "https://github.com/easyeda/eext-export-design-report/issues",
+  "activationEvents": {},
+  "entry": "./dist/index",
+  "dependentExtensions": {},
+  "headerMenus": {
+    "pcb": [
+      {
+        "id": "Report",
+        "title": "报告",
+        "menuItems": [
+          {
+            "id": "Net Length",
+            "title": "网络长度",
+            "menuItems": [
+              {
+                "id": "Net",
+                "title": "网络",
+                "registerFn": "extractAllNetDetails"
+              },
+              {
+                "id": "Net Classes",
+                "title": "网络类",
+                "registerFn": "extractNetClassLengthDetails"
+              },
+              {
+                "id": "Differential Pair",
+                "title": "差分对",
+                "registerFn": "extractDifferentialPairsDetails"
+              },
+              {
+                "id": "Equal Length Group",
+                "title": "等长网络组",
+                "registerFn": "extractEqualLengthNetGroupsDetails"
+              },
+              {
+                "id": "Pads Pair Group",
+                "title": "焊盘对组",
+                "registerFn": "extractPadPairGroupsDetails"
+              }
+            ]
+          },
+          {
+            "id": "pad",
+            "title": "焊盘坐标",
+            "registerFn": "extractSelectPadDetails"
+          },
+          {
+            "id": "About...",
+            "title": "关于...",
+            "registerFn": "about"
+          }
+        ]
+      }
+    ]
+  }
 }
