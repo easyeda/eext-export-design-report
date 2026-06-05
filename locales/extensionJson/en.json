@@ -1,0 +1,6 @@
+{
+	"displayName": "Design Report",
+	"description": "Export length information and pad coordinate information of specified high-speed nets based on the current PCB design.",
+	"Report": "Report",
+	"Net Length": "Net Length"
+}
