@@ -1,6 +1,6 @@
 {
-	"displayName": "Design Report",
-	"description": "Export length information and pad coordinate information of specified high-speed nets based on the current PCB design.",
+	"设计报告": "Design Report",
+	"本扩展用于基于当前 PCB 设计，导出指定高速网络的长度信息和焊盘坐标信息。": "Export length information and pad coordinate information of specified high-speed nets based on the current PCB design.",
 	"Report": "Report",
 	"Net Length": "Net Length"
 }
