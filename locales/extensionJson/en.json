@@ -1,6 +1,15 @@
 {
-	"设计报告": "Design Report",
-	"本扩展用于基于当前 PCB 设计，导出指定高速网络的长度信息和焊盘坐标信息。": "Export length information and pad coordinate information of specified high-speed nets based on the current PCB design.",
+	"Net Length": "Net Length",
 	"Report": "Report",
-	"Net Length": "Net Length"
+	"关于...": "About...",
+	"差分对": "Differential Pair",
+	"报告": "Report",
+	"本扩展用于基于当前 PCB 设计，导出指定高速网络的长度信息和焊盘坐标信息。": "Export length information and pad coordinate information of specified high-speed nets based on the current PCB design.",
+	"焊盘坐标": "Pad Coordinates",
+	"焊盘对组": "Pad Pair Group",
+	"等长网络组": "Equal Length Net Group",
+	"网络": "Net",
+	"网络类": "Net Classes",
+	"网络长度": "Net Length",
+	"设计报告": "Design Report"
 }
